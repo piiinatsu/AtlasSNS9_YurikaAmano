@@ -17,6 +17,7 @@ class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
+     * 登録画面を表示する
      */
     public function create(): View
     {
@@ -30,15 +31,31 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // バリデーションの追加
+        $validatedData = $request->validate([
+            'username' => 'required|string|min:2|max:12', // 入力必須、文字列、2～12文字
+            'email' => 'required|string|email|max:40|unique:users,email', // 入力必須、メアド形式、一意性
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:20',
+                'regex:/^[a-zA-Z0-9]+$/', // 英数字のみ
+                'confirmed', // password_confirmation と一致
+            ],
+        ]);
+
+        // ユーザー登録処理（暗号化）
         User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
         ]);
 
         return redirect('added');
     }
 
+    // 登録完了画面を出す
     public function added(): View
     {
         return view('auth.added');
