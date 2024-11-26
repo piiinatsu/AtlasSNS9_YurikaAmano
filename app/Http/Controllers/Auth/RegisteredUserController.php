@@ -46,11 +46,14 @@ class RegisteredUserController extends Controller
         ]);
 
         // ユーザー登録処理（暗号化）
-        User::create([
+        $user = User::create([
             'username' => $validatedData['username'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
+
+        // セッションにユーザー名を保存
+        $request->session()->put('registered_username', $user->username);
 
         return redirect('added');
     }
@@ -58,6 +61,10 @@ class RegisteredUserController extends Controller
     // 登録完了画面を出す
     public function added(): View
     {
-        return view('auth.added');
+        // セッションからユーザー名を取得
+        $username = session('registered_username');
+
+        // 登録完了画面を表示
+        return view('auth.added', ['username' => $username]);
     }
 }
