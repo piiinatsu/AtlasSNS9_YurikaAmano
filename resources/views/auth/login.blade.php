@@ -2,6 +2,7 @@
 
   <!-- 適切なURLを入力してください -->
   {!! Form::open(['url' => route('login')]) !!}
+  @csrf <!-- CSRFトークンを追加 -->
 
   <p>AtlasSNSへようこそ</p>
 
