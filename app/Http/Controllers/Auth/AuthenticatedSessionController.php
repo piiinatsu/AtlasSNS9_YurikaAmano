@@ -14,6 +14,7 @@ class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
+     * createメソッド: ログインページ（auth.loginビュー）を表示する処理。
      */
     public function create(): View
     {
@@ -22,6 +23,7 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Handle an incoming authentication request.
+     * storeメソッド: ユーザーが送信したログイン情報を認証し、セッションを作成する処理。
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -32,4 +34,22 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended('top');
     }
 
+    /**
+     * Log the user out of the application.
+     * LaravelのAuthファサードを使ってユーザーをログアウトさせる
+     */
+    public function destroy(Request $request): RedirectResponse
+    {
+        // ユーザーをログアウト
+        Auth::guard('web')->logout();
+
+        // セッションを無効化
+        $request->session()->invalidate();
+
+        // セッションのトークンを再生成
+        $request->session()->regenerateToken();
+
+        // ログインページにリダイレクト
+        return redirect('/login');
+    }
 }

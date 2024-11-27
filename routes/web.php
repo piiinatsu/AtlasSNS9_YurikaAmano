@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 
 require __DIR__ . '/auth.php';
+// ログアウト処理
+Route::post('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // ログイン中のみアクセス可能なルートをグループ化
 Route::middleware(['auth'])->group(function () {
