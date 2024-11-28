@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
         // セッションにユーザー名を保存
         $request->session()->put('registered_username', $user->username);
 
-        return redirect('added');
+        return redirect()->route('register.added');
     }
 
     // 登録完了画面を出す

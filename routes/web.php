@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 // ログアウト処理
 Route::post('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
+// 登録完了ページ（ログイン不要）
+Route::get('/added', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'added'])->name('register.added');
 
 // ログイン中のみアクセス可能なルートをグループ化
 Route::middleware(['auth'])->group(function () {
