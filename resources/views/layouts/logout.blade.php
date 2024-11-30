@@ -23,10 +23,14 @@
         <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     </head>
     <body>
+        @if(Request::is('login') || Request::is('register'))
+        <!-- ログインや登録ページではヘッダーを非表示 -->
+        @else
         <header>
-            <h1><img src="images/atlas.png"></h1>
+            <h1><img src="images/atlas.png" alt="Atlas Logo"></h1>
             <p>Social Network Service</p>
         </header>
+        @endif
         <div id="container">
             {{ $slot }}
         </div>
