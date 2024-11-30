@@ -1,0 +1,91 @@
+/* ヘッダー全体 */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1e90ff;
+  padding: 10px 20px;
+}
+
+/* ユーザー情報のスタイル */
+.user-menu {
+  position: relative;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* ユーザー名 */
+.user-name {
+  color: white;
+  margin-right: 10px;
+}
+
+/* ユーザーアイコン */
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+/* ドロップダウンボタン */
+.dropdown-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* 矢印: デフォルトは下向き */
+.dropdown-arrow {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg); /* 下向き */
+  transition: transform 0.3s ease; /* アニメーション効果 */
+}
+
+/* 矢印が上向きになるスタイル */
+.dropdown-button.active .dropdown-arrow {
+  transform: rotate(-135deg); /* 上向き */
+}
+
+/* アコーディオンメニュー */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px 0;
+  display: none;
+}
+
+.dropdown-menu.active {
+  display: block;
+}
+
+/* メニューアイテム */
+.dropdown-menu li {
+  margin: 0;
+  padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+  color: #1e90ff;
+}
