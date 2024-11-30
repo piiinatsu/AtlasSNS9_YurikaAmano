@@ -23,7 +23,7 @@
         <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     </head>
     <body>
-        @if(Request::is('login') || Request::is('register'))
+        @if(Request::is('login') || Request::is('register') || Request::is('added'))
         <!-- ログインや登録ページではヘッダーを非表示 -->
         @else
         <header>
