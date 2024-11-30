@@ -12,6 +12,16 @@
     <!-- 新規登録フォーム -->
     <section class="register-section">
         <h2 class="welcome-message">新規ユーザー登録</h2>
+        <!-- エラーメッセージの表示 -->
+        @if ($errors->any())
+            <div class="error-messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         {!! Form::open(['url' => route('register')]) !!}
         @csrf
 
