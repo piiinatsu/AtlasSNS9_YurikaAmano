@@ -34,6 +34,14 @@
       {{ Form::password('password', ['class' => 'input', 'placeholder' => 'パスワードを入力']) }}
     </div>
 
+    @if ($errors->any())
+    <div class="error-messages">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+    @endif
+
     <!-- ログインボタン -->
     <div class="form-group login-button-container">
       {{ Form::submit('ログイン', ['class' => 'btn-submit']) }}

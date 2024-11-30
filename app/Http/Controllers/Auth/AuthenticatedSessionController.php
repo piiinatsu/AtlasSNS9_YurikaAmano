@@ -26,13 +26,17 @@ class AuthenticatedSessionController extends Controller
      * storeメソッド: ユーザーが送信したログイン情報を認証し、セッションを作成する処理。
      */
     public function store(LoginRequest $request): RedirectResponse
-    {
+{
+    try {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         return redirect()->intended('top');
+    } catch (\Exception $e) {
+        return redirect()->route('login')->withErrors([
+            'email' => 'メールアドレスまたはパスワードが間違っています。',
+        ]);
     }
+}
 
     /**
      * Log the user out of the application.
