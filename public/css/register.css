@@ -1,0 +1,105 @@
+/* 背景設定 */
+.background {
+  height: 100vh;
+  background: linear-gradient(to bottom, #1e90ff, #87ceeb, #f0e68c);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ロゴとサブタイトル */
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: white;
+  margin-top: 5px;
+}
+
+/* 登録セクション */
+.register-section {
+  background-color: rgba(0, 0, 0, 0.3); /* 半透明の黒背景 */
+  padding: 30px;
+  border-radius: 15px;
+  width: 360px;
+  text-align: center;
+}
+
+/* 見出し（新規ユーザー登録） */
+.welcome-message {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+/* 入力フォーム */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  color: white;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: rgba(150, 150, 150, 0.8);
+}
+
+/* 登録ボタン */
+.register-button-container {
+  display: flex;
+  justify-content: flex-end; /* 右側に配置 */
+}
+
+.btn-submit {
+  background-color: #ff4773;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 50%; /* ボタン幅を右半分に限定 */
+  text-align: center;
+}
+
+/* リンクのスタイル */
+.login-link {
+  text-align: center;
+}
+
+.login-link a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

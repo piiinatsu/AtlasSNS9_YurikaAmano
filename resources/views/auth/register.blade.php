@@ -1,26 +1,55 @@
 <x-logout-layout>
-    <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => route('register')]) !!}
 
-<h2>新規ユーザー登録</h2>
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+<div class="background">
+    <!-- ロゴとサブタイトル -->
+    <div class="logo-container">
+        <img src="{{ asset('images/atlas.png') }}" alt="Atlas Logo" class="logo">
+        <h2 class="subtitle">Social Network Service</h2>
+    </div>
 
-{{ Form::label('メールアドレス') }}
-{{ Form::email('email',null,['class' => 'input']) }}
+    <!-- 新規登録フォーム -->
+    <section class="register-section">
+        <h2 class="welcome-message">新規ユーザー登録</h2>
+        {!! Form::open(['url' => route('register')]) !!}
+        @csrf
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+        <!-- ユーザー名入力 -->
+        <div class="form-group">
+            {{ Form::label('username', 'ユーザー名', ['class' => 'form-label']) }}
+            {{ Form::text('username', null, ['class' => 'input', 'placeholder' => 'ユーザー名を入力']) }}
+        </div>
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+        <!-- メールアドレス入力 -->
+        <div class="form-group">
+            {{ Form::label('email', 'メールアドレス', ['class' => 'form-label']) }}
+            {{ Form::email('email', null, ['class' => 'input', 'placeholder' => 'メールアドレスを入力']) }}
+        </div>
 
-{{ Form::submit('登録') }}
+        <!-- パスワード入力 -->
+        <div class="form-group">
+            {{ Form::label('password', 'パスワード', ['class' => 'form-label']) }}
+            {{ Form::password('password', ['class' => 'input', 'placeholder' => 'パスワードを入力']) }}
+        </div>
 
-<p><a href="{{ route('login') }}">ログイン画面へ戻る</a></p>
+        <!-- パスワード確認 -->
+        <div class="form-group">
+            {{ Form::label('password_confirmation', 'パスワード確認', ['class' => 'form-label']) }}
+            {{ Form::password('password_confirmation', ['class' => 'input', 'placeholder' => 'パスワードを再入力']) }}
+        </div>
 
-{!! Form::close() !!}
+        <!-- 登録ボタン -->
+        <div class="form-group register-button-container">
+            {{ Form::submit('新規登録', ['class' => 'btn-submit']) }}
+        </div>
 
+        <p class="login-link">
+            <a href="{{ route('login') }}">ログイン画面へ戻る</a>
+        </p>
+
+        {!! Form::close() !!}
+    </section>
+</div>
 
 </x-logout-layout>
