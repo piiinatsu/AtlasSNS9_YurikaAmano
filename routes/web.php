@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,11 @@ require __DIR__ . '/auth.php';
 Route::post('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
 // 登録完了ページ（ログイン不要）
 Route::get('/added', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'added'])->name('register.added');
+// ログインページ表示
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+// ログイン処理
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
 
 // ログイン中のみアクセス可能なルートをグループ化
 Route::middleware(['auth'])->group(function () {

@@ -2,7 +2,7 @@
             <h1><a href="#"><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
-                    <p>〇〇さん</p>
+                    <p>{{ $username }}さん</p>
                 </div>
                 <ul>
                     <li><a href="{{ route('top') }}">ホーム</a></li>
