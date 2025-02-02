@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\FollowsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -17,29 +18,22 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-
-
 require __DIR__ . '/auth.php';
 // ログアウト処理
-Route::post('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
-// 登録完了ページ（ログイン不要）
-Route::get('/added', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'added'])->name('register.added');
-// ログインページ表示
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-// ログイン処理
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
-
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // ログイン中のみアクセス可能なルートをグループ化
 Route::middleware(['auth'])->group(function () {
-// トップページ
-Route::get('top', [PostsController::class, 'index'])->name('top');
-// プロフィールページ
-Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
-// ユーザー検索ページ
-Route::get('search', [UsersController::class, 'index'])->name('search');
-// フォローリストページ
-Route::get('follow-list', [PostsController::class, 'index'])->name('follow-list');
-// フォロワーリストページ
-Route::get('follower-list', [PostsController::class, 'index'])->name('follower-list');
+  // トップページ
+  Route::get('posts/index', [PostsController::class, 'index'])->name('posts.index');
+  // プロフィールページ
+  Route::get('users/profile', [ProfileController::class, 'profile'])->name('users.profile');
+  // ユーザー検索ページ
+  Route::get('users/search', [UsersController::class, 'search'])->name('users.search');
+  // 検索結果ページ
+  Route::get('users/search_result', [UsersController::class, 'searchResult'])->name('users.search_result');
+  // フォローリストページ
+  Route::get('follows/followlist', [FollowsController::class, 'followList'])->name('follows.followlist');
+  // フォロワーリストページ
+  Route::get('follows/followerlist', [FollowsController::class, 'followerList'])->name('follows.followerlist');
 });
