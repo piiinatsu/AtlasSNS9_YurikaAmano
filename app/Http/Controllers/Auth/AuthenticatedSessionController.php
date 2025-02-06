@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
     try {
         $request->authenticate();
         $request->session()->regenerate();
-        return redirect()->intended('top');
+        return redirect()->route('posts.index');
     } catch (\Exception $e) {
         return redirect()->route('login')->withErrors([
             'email' => 'メールアドレスまたはパスワードが間違っています。',
@@ -54,6 +54,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         // ログインページにリダイレクト
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }

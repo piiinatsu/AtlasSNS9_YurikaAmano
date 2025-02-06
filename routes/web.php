@@ -20,7 +20,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 require __DIR__ . '/auth.php';
 // ログアウト処理
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // ログイン中のみアクセス可能なルートをグループ化
 Route::middleware(['auth'])->group(function () {
