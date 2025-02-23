@@ -1,91 +1,134 @@
-/* ヘッダー全体 */
+/* 全体のレイアウト */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* ヘッダー */
 .header-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   background-color: #1e90ff;
   padding: 10px 20px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-/* ユーザー情報のスタイル */
+.header-container h1 img {
+  width: 120px;
+}
+
 .user-menu {
   position: relative;
-}
-
-.user-info {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
-/* ユーザー名 */
 .user-name {
-  color: white;
   margin-right: 10px;
 }
 
-/* ユーザーアイコン */
 .user-icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
-/* ドロップダウンボタン */
 .dropdown-button {
   background: none;
   border: none;
+  color: white;
   cursor: pointer;
-  padding: 5px;
 }
 
-/* 矢印: デフォルトは下向き */
 .dropdown-arrow {
   display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: rotate(45deg); /* 下向き */
-  transition: transform 0.3s ease; /* アニメーション効果 */
+  width: 10px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-left: 5px;
 }
 
-/* 矢印が上向きになるスタイル */
 .dropdown-button.active .dropdown-arrow {
-  transform: rotate(-135deg); /* 上向き */
+  transform: rotate(-135deg);
 }
 
-/* アコーディオンメニュー */
 .dropdown-menu {
+  display: none;
   position: absolute;
   top: 100%;
   right: 0;
   background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   list-style: none;
-  padding: 10px 0;
-  display: none;
+  padding: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-menu.active {
   display: block;
 }
 
-/* メニューアイテム */
 .dropdown-menu li {
-  margin: 0;
-  padding: 10px 20px;
+  margin-bottom: 10px;
 }
 
-.dropdown-menu li a {
-  color: #333;
+.dropdown-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-menu a {
   text-decoration: none;
+  color: #333;
 }
 
-.dropdown-menu li a:hover {
-  background-color: #f0f0f0;
-  color: #1e90ff;
+/* コンテンツエリアとサイドバー */
+.content-container {
+  display: flex;
+  flex-grow: 1;
+  margin-top: 60px; /* ヘッダーの高さ分マージンを設定 */
+}
+
+.content-area {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* 右側に影をつける */
+  margin-top: 60px; /* ヘッダーの高さ分だけ下げる */
+  position: sticky; /* スクロールしても位置を保つ */
+  top: 0;
+}
+
+/* サイドバーの内容 */
+.follow-info p {
+  margin: 10px 0;
+}
+
+.btn-follow,
+.btn-search {
+  display: block;
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
