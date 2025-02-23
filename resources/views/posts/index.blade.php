@@ -7,7 +7,7 @@
       <!-- フォーム送信でデータベースに投稿を保存 -->
       <form method="POST" action="{{ route('posts.store') }}">
         @csrf
-        <input type="text" name="content" placeholder="投稿内容を入力してください。" class="post-input" required>
+        <input type="text" name="post" placeholder="投稿内容を入力してください。" class="post-input" required>
         <button type="submit" class="post-submit">
           <img src="{{ asset('images/send.png') }}" alt="送信">
         </button>
@@ -21,7 +21,7 @@
           <img src="{{ asset('images/icon1.png') }}" alt="User Icon" class="user-icon">
           <div class="post-content">
             <p class="user-name">{{ $post->user->name }}</p>
-            <p class="post-text">{{ $post->content }}</p>
+            <p class="post-text">{{ $post->post }}</p>
             <p class="post-time">{{ $post->created_at->format('Y-m-d H:i') }}</p>
           </div>
 
