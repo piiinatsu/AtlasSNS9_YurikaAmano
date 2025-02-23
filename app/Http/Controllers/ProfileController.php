@@ -12,6 +12,11 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     public function profile(){
-        return view('profiles.profile');
+        $user = Auth::user(); // ログイン中のユーザー情報を取得
+        if (!$user) {
+            return redirect('/login'); // 未ログインならログイン画面へリダイレクト
+        }
+        return view('profiles.profile', compact('user'));
     }
+
 }
