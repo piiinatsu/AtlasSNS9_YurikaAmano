@@ -17,7 +17,10 @@ class UsersController extends Controller
         if (!$user) {
             return redirect('/login');
         }
-        return view('users.profile', compact('user'));
+        $posts = Post::where('user_id', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        return view('users.profile', compact('user', 'posts'));
     }
 
     // プロフィール更新
@@ -47,8 +50,11 @@ class UsersController extends Controller
         $user->bio = $request->bio;
         // アイコン画像
         if ($request->hasFile('iconImage')) {
-            $path = $request->file('iconImage')->store('public/images');
-            $user->icon_image = str_replace('public/', '', $path);
+            $file = $request->file('iconImage');
+            // $filename = $file->getClientOriginalName();
+            $filename = time().'_'.$user->id.'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $user->icon_image = $filename; // ファイル名だけをDBに保存
         }
 
         $user->save();
@@ -59,21 +65,25 @@ class UsersController extends Controller
     // ユーザー検索
     public function search()
     {
-        return view('users.search'); // 検索フォーム表示
+        $user = Auth::user(); // ログイン中のユーザーを取得
+        // 自分を除いたユーザー一覧を取得
+        $users = User::where('id', '!=', $user->id)->orderBy('created_at', 'desc')->get();
+        return view('users.search', compact('users')); // 検索フォーム表示
     }
 
     // 検索結果表示
     public function searchResult(Request $request)
     {
         $keyword = $request->input('keyword');
+        $user = Auth::user(); // ログインユーザー取得
 
         $query = User::query();
         if (!empty($keyword)) {
             // ユーザー名のみを対象に部分一致
             $query->where('username','LIKE',"%{$keyword}%");
         }
-        // 新しい順
-        $users = $query->orderBy('created_at','desc')->get();
+        // 自分以外を新しい順
+        $users = $query->where('id', '!=', $user->id)->orderBy('created_at','desc')->get();
 
         return view('users.search_result', compact('users','keyword'));
     }
@@ -81,16 +91,21 @@ class UsersController extends Controller
     // 相手のプロフィール ( /users/profile/{id} )
     public function showOtherProfile($id)
     {
-        $otherUser = User::findOrFail($id);
-        // そのユーザーの投稿一覧
+        $loginUser = Auth::user(); // 現在ログイン中のユーザー
+        $otherUser = User::findOrFail($id); // 表示対象のユーザー
+
+        // 自分自身のプロフィールなら編集ページにリダイレクト
+        if ($loginUser->id === $otherUser->id) {
+            return redirect()->route('users.profile');
+            }
+        // 相手のの投稿一覧
         $posts = Post::where('user_id', $otherUser->id)
                     ->orderBy('created_at','desc')
                     ->get();
 
-        return view('users.profile', [
+        return view('users.profile_readonly', [
             'user'  => $otherUser,
             'posts' => $posts,
-            'isOtherUser' => true // Bladeで「自分の画面かどうか」を判定
         ]);
     }
 
@@ -104,7 +119,7 @@ class UsersController extends Controller
         if (!$user->follows()->where('followed_id', $id)->exists()) {
             $user->follows()->attach($id); // フォローを追加
         }
-        return back();
+        return redirect()->route('users.search');
     }
 
 
@@ -116,7 +131,7 @@ class UsersController extends Controller
         }
         // フォローしている場合のみ解除
         $user->follows()->detach($id); // フォローを削除
-        return back(); // 元のページにリダイレクト
+        return redirect()->route('users.search');
     }
 
 }
