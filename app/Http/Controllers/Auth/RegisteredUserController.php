@@ -50,21 +50,21 @@ class RegisteredUserController extends Controller
             'username' => $validatedData['username'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'icon_image' => 'icon1.png',
         ]);
 
         // セッションにユーザー名を保存
         $request->session()->put('registered_username', $user->username);
+        $request->session()->save();
 
-        return redirect()->route('register.added');
+        return redirect()->route('register.added', ['username' => $user->username]);
+
     }
 
     // 登録完了画面を出す
-    public function added(): View
+    public function added(Request $request): View
     {
-        // セッションからユーザー名を取得
-        $username = session('registered_username');
-
-        // 登録完了画面を表示
+        $username = $request->query('username', 'ゲスト');
         return view('auth.added', ['username' => $username]);
     }
 }
