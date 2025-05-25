@@ -27,7 +27,7 @@
     </div>
 
     @if ($errors->any())
-    <div class="error-messages">
+    <div class="error_messages">
         @foreach ($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
@@ -35,11 +35,11 @@
     @endif
 
     <!-- ログインボタン -->
-    <div class="form_group login-button-container">
+    <div class="form_group login_button_container">
       {{ Form::submit('LOGIN', ['class' => 'btn_submit']) }}
     </div>
 
-    <p class="register-link">
+    <p class="register_link">
       <a href="{{ route('register') }}">新規ユーザーの方はこちら</a>
     </p>
 

@@ -14,7 +14,7 @@
         <h2 class="welcome_message">新規ユーザー登録</h2>
         <!-- エラーメッセージの表示 -->
         @if ($errors->any())
-            <div class="error-messages">
+            <div class="error_messages">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
