@@ -1,25 +1,37 @@
 <x-login-layout>
+<link rel="stylesheet" href="{{ asset('css/search.css') }}">
 
-  <div class="search-container">
-    <!-- 検索フォーム -->
-    <form action="{{ route('users.search_result') }}" method="GET" class="search-form">
-      <input type="text" name="keyword" placeholder="ユーザー名" value="{{ $keyword ?? '' }}" class="search-input">
-      <button type="submit" class="search-btn">
-        <img src="{{ asset('images/search-icon.png') }}" alt="検索">
-      </button>
-    </form>
+  <div class="search_container">
+    <div class="search_form_wrapper">
+      <!-- 左側：検索フォーム -->
+      <div class="search_form_left">
+        <form action="{{ route('users.search_result') }}" method="GET" class="search_form">
+          <input type="text" name="keyword" placeholder="ユーザー名" class="search_input">
+          <button type="submit" class="search_btn">
+            <img src="{{ asset('images/search.png') }}" alt="検索">
+          </button>
+        </form>
+      </div>
 
-    <!-- 検索ワード表示 -->
-    @if (!empty($keyword))
-      <p class="search-keyword">検索ワード： <strong>{{ $keyword }}</strong></p>
-    @endif
-
+      <!-- 右側：検索ワード -->
+      @if (!empty($keyword))
+        <p class="search_keyword_inline">検索ワード：<strong>{{ $keyword }}</strong></p>
+      @endif
+    </div>
+    <div class="section_divider"></div>
     <!-- 検索結果リスト -->
-    <div class="user-list">
+    <div class="user_list">
       @foreach ($users as $user)
-        <div class="user-item">
-          <img src="{{ asset('images/icon1.png') }}" alt="{{ $user->username }}" class="user-icon">
-          <span class="user-name">{{ $user->username }}</span>
+        <div class="user_item">
+          @php
+              $iconPath = $user->icon_image
+                  ? (\Illuminate\Support\Str::startsWith($user->icon_image, 'images/')
+                      ? 'storage/' . $user->icon_image
+                      : 'storage/images/' . $user->icon_image)
+                  : 'images/default-icon.png';
+          @endphp
+          <img src="{{ asset($iconPath) }}" alt="{{ $user->username }}" class="user_icon">
+          <span class="user_name">{{ $user->username }}</span>
 
           @if(Auth::user()->follows()->where('followed_id', $user->id)->exists())
             <!-- フォロー解除ボタン -->
@@ -37,7 +49,6 @@
         </div>
       @endforeach
     </div>
-
   </div>
 
 </x-login-layout>
