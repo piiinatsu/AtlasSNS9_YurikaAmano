@@ -27,29 +27,38 @@
   <!--OGPタグ/twitterカード-->
 </head>
 
-<<body>
+<body>
+  @php use Illuminate\Support\Str; @endphp
   <header>
-    <div class="header-container">
+    <div class="header_container">
       <h1><a href="{{ route('posts.index') }}">
         <img src="{{ asset('images/atlas.png') }}" alt="Atlas Logo">
       </a></h1>
-      <div class="user-menu">
+      <div class="user_menu">
         <!-- ユーザー情報 -->
-        <div class="user-info">
+        <div class="user_info">
           {{-- ★ $username が無ければゲスト表示 --}}
           <span class="user-name">{{ $username }}さん</span>
-          <img src="{{ asset('images/icon1.png') }}" alt="User Icon" class="user-icon">
-          <button class="dropdown-button"><span class="dropdown-arrow"></span></button>
+          @php
+            $authUser = \App\Models\User::find(Auth::id());
+            $iconPath = $authUser && $authUser->icon_image
+              ? (Str::startsWith($authUser->icon_image, 'images/')
+                  ? 'storage/' . $authUser->icon_image
+                  : 'storage/images/' . $authUser->icon_image)
+              : 'images/default-icon.png';
+          @endphp
+          <button class="dropdown_button"><span class="dropdown_arrow"></span></button>
+          <img src="{{ asset($iconPath) }}" alt="User Icon" class="user_icon">
         </div>
 
         <!-- ドロップダウンメニュー -->
         <ul class="dropdown-menu">
-          <li><a href="{{ route('posts.index') }}">HOME</a></li>
-          <li><a href="{{ route('users.profile') }}">プロフィール編集</a></li>
+          <li><a href="{{ route('posts.index') }}" class="nav_link">HOME</a></li>
+          <li><a href="{{ route('users.profile') }}" class="nav_link">プロフィール編集</a></li>
           <li>
-            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+            <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
               @csrf
-              <a href="#" onclick="this.closest('form').submit()">ログアウト</a>
+              <button type="submit" class="nav_link">ログアウト</button>
             </form>
           </li>
         </ul>
@@ -57,22 +66,22 @@
     </div>
   </header>
 
-  <div class="layout-container">
-    <div class="content-container">
+  <div class="layout_container">
+    <div class="content_container">
       {{-- ★ メインコンテンツ(子ビューが入る場所) --}}
-      <div class="content-area">
+      <div class="content_area">
         {{ $slot }}
       </div>
       {{-- ★ サイドバー --}}
       <div class="sidebar">
-        <div class="follow-info">
-          <p>フォロー数 <span class="follow-count">{{ $followCount ?? 0 }}人</span></p>
-          <a href="{{ route('follows.followlist') }}" class="btn-follow">フォローリスト</a>
-          <p>フォロワー数 <span class="follower-count">{{ $followerCount ?? 0 }}人</span></p>
-          <a href="{{ route('follows.followerlist') }}" class="btn-follow">フォロワーリスト</a>
+        <div class="follow_info">
+          <p>フォロー数 <span class="follow_count">{{ $followCount ?? 0 }}人</span></p>
+          <a href="{{ route('follows.followlist') }}" class="btn_follow">フォローリスト</a>
+          <p>フォロワー数 <span class="follower_count">{{ $followerCount ?? 0 }}人</span></p>
+          <a href="{{ route('follows.followerlist') }}" class="btn_follow">フォロワーリスト</a>
         </div>
         <div class="search">
-          <a href="{{ route('users.search') }}" class="btn-search">ユーザー検索</a>
+          <a href="{{ route('users.search') }}" class="btn_search">ユーザー検索</a>
         </div>
       </div>
     </div>
