@@ -1,16 +1,17 @@
 .background {
-  height: 100vh;
+  min-height: 100vh; /* 最低100vhにする */
   background: linear-gradient(to bottom, #1e90ff, #87ceeb, #f0e68c);
   display: flex;
   flex-direction: column;
+  justify-content: flex-start; /* 上から詰めるだけにする */
   align-items: center;
-  justify-content: center;
+  padding: 30px 0;
 }
 
 /* ロゴとサブタイトル */
-.logo-container {
+.logo_container {
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 .logo {
@@ -19,22 +20,23 @@
 }
 
 .subtitle {
-  font-size: 16px;
   color: white;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 /* ログインセクション */
-.login-section {
+.login_section {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 30px;
   border-radius: 15px;
   width: 360px;
   text-align: center;
+  margin-top: 30px; /* ロゴとフォームの間にスペース */
+  margin-bottom: 30px;
 }
 
 /* 見出し（AtlasSNSへようこそ） */
-.welcome-message {
+.welcome_message {
   font-size: 20px;
   margin-bottom: 20px;
   color: white;
@@ -42,11 +44,11 @@
 }
 
 /* 入力フォーム */
-.form-group {
+.form_group {
   margin-bottom: 20px;
 }
 
-.form-label {
+.form_label {
   display: block;
   font-size: 14px;
   color: white;
@@ -70,12 +72,12 @@
 }
 
 /* ログインボタン */
-.login-button-container {
+.login_button_container {
   display: flex;
-  justify-content: flex-end; /* 右側に配置 */
+  justify-content: flex-end;
 }
 
-.btn-submit {
+.btn_submit {
   background-color: #ff4773;
   color: white;
   padding: 10px 20px;
@@ -84,21 +86,21 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  width: 50%; /* ボタン幅を右半分に限定 */
+  width: 50%;
   text-align: center;
 }
 
 /* リンクのスタイル */
-.register-link {
+.register_link {
   text-align: center;
 }
 
-.register-link a {
+.register_link a {
   color: white;
   text-decoration: none;
   font-size: 14px;
 }
 
-.register-link a:hover {
+.register_link a:hover {
   text-decoration: underline;
 }
