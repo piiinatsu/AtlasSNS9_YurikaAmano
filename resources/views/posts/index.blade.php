@@ -74,7 +74,7 @@
   </div>
   <!-- 編集モーダル -->
   <div id="editModal" class="modal">
-    <div class="modal_content">
+    <div class="modal-content">
       <form method="POST" id="editForm">
         @csrf
         @method('PUT')
