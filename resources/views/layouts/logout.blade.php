@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <!--IEブラウザ対策-->
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="ページの内容を表す文章" />
+        <meta name="description" content="AtlasSNS" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title></title>
+        <title>AtlasSNS</title>
 
         <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -23,11 +23,11 @@
         <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     </head>
     <body>
-        @if(Request::is('login') || Request::is('register') || Request::is('added'))
+        @if(Request::is('auth/login') || Request::is('auth/register') || Request::is('auth/added'))
         <!-- ログインや登録ページではヘッダーを非表示 -->
         @else
         <header>
-            <h1><img src="images/atlas.png" alt="Atlas Logo"></h1>
+            <h1><img src="{{ asset('images/atlas.png') }}" alt="Atlas Logo"></h1>
             <p>Social Network Service</p>
         </header>
         @endif
@@ -35,7 +35,5 @@
             {{ $slot }}
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
-        <script src="JavaScriptファイルのURL"></script>
-        <script src="JavaScriptファイルのURL"></script>
     </body>
 </html>
