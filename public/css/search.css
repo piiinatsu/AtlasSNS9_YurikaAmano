@@ -1,74 +1,105 @@
-.search-container {
+.search_container {
   padding: 20px;
 }
 
-.search-form {
+.search_form_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* ← 左寄せ維持 */
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding: 0 20px; /* 全体左右に余白をつけたい場合 */
+}
+
+.search_form {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.search-input {
+.search_input {
   width: 200px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.search-btn {
-  background: #007BFF;
+.search_btn {
+  background: none;
   border: none;
-  padding: 8px;
-  border-radius: 5px;
+  padding: 0;
   cursor: pointer;
 }
 
-.search-keyword {
-  color: red;
-  margin-top: 10px;
+.search_btn img {
+  width: 35px;
+  height: auto;
+  display: inline-block;
 }
 
-.user-list {
+.search_keyword_inline {
+  font-size: 14px;
+  margin: 0;
+  margin-left: 500px;
+}
+
+/* ユーザーリスト全体を中央に寄せる */
+.user_list {
   margin-top: 20px;
-}
-
-.user-item {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: center; /* 子要素を中央寄せ */
   gap: 10px;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
 }
 
-.user-icon {
+/* ユーザー1人分の行レイアウト */
+.user_item {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between; /* アイコン、名前、ボタンを左右に配置 */
+  gap: 15px;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 600px;  /* 横幅制限して中央寄せ */
+  margin: 0 auto;     /* 中央寄せ */
+}
+
+/* ユーザーアイコン画像 */
+.user_icon {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background-color: #ddd;
+  object-fit: cover;
 }
 
-.user-name {
+/* ユーザー名 */
+.user_name {
   font-size: 16px;
+  flex-grow: 1;         /* 名前部分が自然に広がる */
+  white-space: nowrap;  /* 改行しない */
 }
 
-.follow-form {
+/* ボタンフォーム全体 */
+.user_item form {
+  display: flex;
+}
+
+/* ボタンの見た目 */
+.user_item button {
+  padding: 5px 10px;
+}
+
+/* ボタンを右端に寄せる */
+.follow_form {
   margin-left: auto;
 }
 
-.btn-follow {
-  background-color: #007BFF;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-unfollow {
-  background-color: #FF4B4B;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.section_divider {
+  border-top: 3px solid #ccc;
+  margin: 30px 0;
+  width: calc(100% - 5px);     /* 画面幅から左右20pxずつ余白をとる */
+  margin-left: auto;
+  margin-right: auto;
 }
