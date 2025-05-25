@@ -1,73 +1,204 @@
-/* 投稿コンテナ */
-.post-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 /* 投稿フォーム */
-.post-form {
+.post_form {
   display: flex;
   align-items: center;
-  padding: 10px;
-  background-color: #f8f8f8;
-  border-radius: 10px;
+  gap: 10px;
+  padding: 10px 20px;
+  margin-top: 100px;
+  margin-bottom: 30px;
 }
 
-.post-form img.user-icon {
+.post_form img.user_icon {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-right: 10px;
 }
 
-.post-input {
+.post_form_inner {
+  display: flex;
+  align-items: center;
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 
-.post-submit {
+.post_input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.post_input::placeholder {
+  color: #ccc;
+}
+
+.post_submit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.post_submit img {
+  width: 35px;
+  height: 35px;
+}
+
+/* 投稿リスト全体 */
+.post_list {
+  margin-top: 20px;
+}
+
+/* グレーの区切り線 */
+.section_divider {
+  border: none;
+  border-top: 3px solid #ccc;
+  margin: 30px 0;
+}
+
+/* 投稿アイテム */
+li.post_block {
+  list-style: none;
+  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 0;
+  position: relative;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.post_content {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.post_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post_name {
+  font-weight: bold;
+}
+
+.post_date {
+  font-size: 12px;
+  color: #888;
+}
+
+.post_text {
+  margin-top: 5px;
+  word-break: break-word;
+}
+
+/* 編集・削除ボタン */
+.post_actions {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.post_actions button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-/* 投稿リスト */
-.post-list {
-  margin-top: 20px;
+.post_actions img {
+  width: 35px;
+  height: 35px;
 }
 
-/* 投稿アイテム */
-.post-item {
+.delete_btn:hover .trash_icon {
+  content: url('/images/trash-h.png');
+}
+
+/* 編集フォーム */
+.edit_input {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: vertical;
+  margin-bottom: 20px;
+}
+
+.edit_buttons {
   display: flex;
-  align-items: flex-start;
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
+  justify-content: center;
 }
 
-.post-content {
-  flex: 1;
-  margin-left: 10px;
-}
-
-.post-text {
-  margin: 5px 0;
-}
-
-.post-time {
-  font-size: 12px;
-  color: #777;
-}
-
-/* 削除ボタン */
-.post-actions {
-  margin-left: 10px;
-}
-
-.delete-btn {
-  background: none;
+.edit_buttons .update_btn {
+  padding: 6px 12px;
   border: none;
+  border-radius: 4px;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+}
+
+.edit_buttons .update_btn img {
+  width: 35px;
+  height: 35px;
+}
+
+/* プロフィール編集ページ用 */
+.profile_container {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+.profile_form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile_form .form_group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile_form .form_group label {
+  width: 160px;
+  text-align: right;
+  font-weight: bold;
+  color: #333;
+}
+
+.profile_form input,
+.profile_form textarea {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.profile_form .btn_submit {
+  align-self: center;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
   cursor: pointer;
 }
