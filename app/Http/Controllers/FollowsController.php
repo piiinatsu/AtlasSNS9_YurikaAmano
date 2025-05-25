@@ -10,25 +10,29 @@ use App\Models\Follow;
 
 class FollowsController extends Controller //親の Controller の機能を引き継ぐ
 {
-    // フォローリストページ
+    // フォローリストページ(フォローしているユーザーのアイコン一覧 + 投稿一覧)
     public function followList(){
         $user = Auth::user(); // ログイン中のユーザーの情報を取得
         if (!$user) {
             return redirect('/login');
         }
-        // フォローリスト (Follow テーブルのデータ)
-        $followRecords = $user->follows;
-        // フォローしているユーザーのリスト
-        $followers = User::whereIn('id', $followRecords->pluck('followed_id'))->get();
-        // フォローしているユーザーの投稿を取得
-        $followerPosts = Post::whereIn('user_id', $followers->pluck('id'))
-            ->orderBy('created_at', 'desc') // 新しい順に並べる
-            ->get();
-        // ビューに送る
+
+        // --- レイアウト用 (ヘッダー等で表示する用) ---
+        $username       = $user->username;
+        $followCount    = $user->follows->count();    // フォロー数
+        $followerCount  = $user->followers->count();  // フォロワー数
+
+        // 上段アイコン: 「自分がフォローしているユーザー」コレクション
+        $followedUsers = $user->follows;
+
+        // 下段投稿一覧: そのユーザーたちの投稿
+        $followingsPosts = \App\Models\Post::whereIn('user_id', $followedUsers->pluck('id'))
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
         return view('follows.followList', compact(
-            'followRecords',
-            'followers',
-            'followerPosts'
+            'username', 'followCount', 'followerCount',
+            'followedUsers', 'followingsPosts'
         ));
     }
     // フォロワーリストページ
@@ -38,31 +42,31 @@ class FollowsController extends Controller //親の Controller の機能を引�
         if (!$user) {
             return redirect('/login');
         }
-
+        // --- 追加: レイアウト用 ---
+        $username      = $user->username;
+        $followCount   = $user->follows()->count();
+        $followerCount = $user->followers()->count();
         // 自分をフォローしている「Followモデルのコレクション」
         // (followed_id = 自分のID)
-        $followerRecords = $user->followers ?? collect();
-
+        $followerUsers = $user->followers;
+        // フォロワーのリストを取得
+        $followers = collect(); // **エラー回避のため空のコレクションを用意**
+        if ($followerUsers->isNotEmpty()) {
+        $followers = User::whereIn('id', $followerUsers->pluck('following_id'))->get();
+        }
         // 自分をフォローしているユーザーたちの投稿を取得
         // => Followテーブルの "following_id" が投稿者のIDになる
-        $followerUserIds = $followerRecords->pluck('following_id');
+        $followerUserIds = $followerUsers->pluck('id')->toArray();
         $followerPosts = Post::whereIn('user_id', $followerUserIds)
                                 ->orderBy('created_at','desc')
                                 ->get();
 
-        return view('follows.followerList', compact(
-            'followerRecords',
-            'followerPosts'
-        ));
-    }
-    // **サイドバー用のフォロー数・フォロワー数を取得**
-    public function followInfo()
-    {
-        $user = Auth::user(); // ログイン中のユーザーの情報を取得
-        if (!$user) {
-            return redirect('/login');
-        }
-
-        return view('layouts.sidebar');
+        return view('follows.followerList', [
+            'username'       => $username,
+            'followCount'    => $followCount,
+            'followerCount'  => $followerCount,
+            'followerUsers'  => $followerUsers,   // アイコン一覧用
+            'followerPosts'  => $followerPosts,   // 投稿一覧用
+        ]);
     }
 }
