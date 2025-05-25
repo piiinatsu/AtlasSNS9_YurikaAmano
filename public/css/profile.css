@@ -1,0 +1,128 @@
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.follow_header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 10px 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.icon_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ← これで両端に分かれる！ */
+  width: 100%;
+  padding: 0 20px; /* 左右に余白を追加したい場合 */
+}
+
+
+.user_icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.section_divider {
+  border: none;
+  border-top: 3px solid #ccc;
+  margin: 20px 0;
+}
+
+.post_list {
+  margin-top: 20px;
+}
+
+.post_block {
+  list-style: none;
+  border-bottom: 1px solid #000;
+  display: flex;
+  padding: 10px 0;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.post_content {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.post_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post_name {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post_date {
+  font-size: 12px;
+  color: #888;
+}
+
+.post_text {
+  margin-top: 5px;
+  word-break: break-word;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+.user_info {
+  margin-left: 20px;
+}
+.user_info strong {
+  margin-right: 100px;
+}
+
+
+.follow_action {
+  margin-left: auto;
+  padding-right: 10px;
+}
+
+.btn.btn-danger {
+  padding: 6px 12px; /* 小さめのパディングに調整 */
+  width: auto;        /* 幅を必要最小限に */
+}
