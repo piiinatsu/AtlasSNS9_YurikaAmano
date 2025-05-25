@@ -20,3 +20,54 @@ header{
     flex: 0 0 19%;
     border-left: 1px solid #727272;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit_buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.update_btn, .cancel_btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.update_btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.cancel_btn {
+    background-color: #ccc;
+}
