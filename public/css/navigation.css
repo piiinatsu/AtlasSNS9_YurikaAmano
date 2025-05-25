@@ -1,5 +1,5 @@
 /* 全体のレイアウト */
-.layout-container {
+.layout_container {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -7,7 +7,7 @@
 }
 
 /* ヘッダー */
-.header-container {
+.header_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,35 +21,35 @@
   z-index: 1000;
 }
 
-.header-container h1 img {
+.header_container h1 img {
   width: 120px;
 }
 
-.user-menu {
+.user_menu {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.user-name {
+.user_name {
   margin-right: 10px;
 }
 
-.user-icon {
+.user_icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.dropdown-button {
+.dropdown_button {
   background: none;
   border: none;
   color: white;
   cursor: pointer;
 }
 
-.dropdown-arrow {
+.dropdown_arrow {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -59,10 +59,11 @@
   margin-left: 5px;
 }
 
-.dropdown-button.active .dropdown-arrow {
+.dropdown_button.active .dropdown_arrow {
   transform: rotate(-135deg);
 }
 
+/* ドロップダウンメニュー */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -70,9 +71,12 @@
   right: 0;
   background-color: white;
   list-style: none;
-  padding: 10px;
+  padding: 0;
+  margin: 0;
   border: 1px solid #ddd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 180px;
+  text-align: center;
 }
 
 .dropdown-menu.active {
@@ -80,26 +84,48 @@
 }
 
 .dropdown-menu li {
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .dropdown-menu li:last-child {
-  margin-bottom: 0;
+  border-bottom: none;
 }
 
-.dropdown-menu a {
+/* ▼ 共通：aとbuttonの統一スタイル */
+.dropdown-menu .nav_link {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  text-align: center;
   text-decoration: none;
-  color: #333;
+  color: #555;
+  background-color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ▼ ホバー時の共通効果 */
+.dropdown-menu .nav_link:hover {
+  background-color: #002f87;
+  color: white;
+}
+
+/* ▼ フォームも整える */
+.dropdown-menu form {
+  margin: 0;
+  padding: 0;
 }
 
 /* コンテンツエリアとサイドバー */
-.content-container {
+.content_container {
   display: flex;
   flex-grow: 1;
-  margin-top: 60px; /* ヘッダーの高さ分マージンを設定 */
+  margin-top: 60px;
 }
 
-.content-area {
+.content_area {
   flex-grow: 1;
   padding: 20px;
   background-color: #f9f9f9;
@@ -109,19 +135,19 @@
   width: 240px;
   background-color: #f5f5f5;
   padding: 20px;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* 右側に影をつける */
-  margin-top: 60px; /* ヘッダーの高さ分だけ下げる */
-  position: sticky; /* スクロールしても位置を保つ */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+  position: sticky;
   top: 0;
 }
 
 /* サイドバーの内容 */
-.follow-info p {
+.follow_info p {
   margin: 10px 0;
 }
 
-.btn-follow,
-.btn-search {
+.btn_follow,
+.btn_search {
   display: block;
   background-color: #1e90ff;
   color: white;
