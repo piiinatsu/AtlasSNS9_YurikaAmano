@@ -19,6 +19,15 @@
       <form action="{{ route('users.updateProfile') }}" method="POST" enctype="multipart/form-data" class="profile_form">
         @csrf
         @method('POST')
+        @if ($errors->any())
+          <div class="error_messages">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
 
         <!-- ユーザー名 -->
         <div class="form_group">
