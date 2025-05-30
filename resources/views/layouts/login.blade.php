@@ -80,6 +80,7 @@
           <p>フォロワー数 <span class="follower_count">{{ $followerCount ?? 0 }}人</span></p>
           <a href="{{ route('follows.followerlist') }}" class="btn_follow">フォロワーリスト</a>
         </div>
+        <hr class="sidebar-divider">
         <div class="search">
           <a href="{{ route('users.search') }}" class="btn_search">ユーザー検索</a>
         </div>

@@ -173,3 +173,9 @@
   margin-bottom: 10px;
   cursor: pointer;
 }
+
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
