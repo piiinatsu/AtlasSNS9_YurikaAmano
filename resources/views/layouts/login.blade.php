@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <!--IEブラウザ対策-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="ページの内容を表す文章" />
+  <meta name="description" content="AtlasSNS" />
   <title>AtlasSNS</title>
   <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
