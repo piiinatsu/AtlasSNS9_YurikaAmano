@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .search_container {
   padding: 20px;
 }
@@ -9,7 +11,7 @@
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 10px;
-  padding: 0 20px; /* 全体左右に余白をつけたい場合 */
+  padding: 0 20px;
 }
 
 .search_form {
@@ -55,14 +57,14 @@
 
 /* ユーザー1人分の行レイアウト */
 .user_item {
-  display: flex !important;
+  display: flex;
   align-items: center;
-  justify-content: space-between; /* アイコン、名前、ボタンを左右に配置 */
+  justify-content: space-between;
   gap: 15px;
   padding: 10px 0;
   width: 100%;
-  max-width: 600px;  /* 横幅制限して中央寄せ */
-  margin: 0 auto;     /* 中央寄せ */
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* ユーザーアイコン画像 */
@@ -77,7 +79,7 @@
 /* ユーザー名 */
 .user_name {
   font-size: 16px;
-  flex-grow: 1;         /* 名前部分が自然に広がる */
+  flex-grow: 1;
   white-space: nowrap;  /* 改行しない */
 }
 

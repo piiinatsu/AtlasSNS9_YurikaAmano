@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* 全体のレイアウト */
 .layout_container {
   display: flex;
@@ -146,7 +148,20 @@
   margin: 10px 0;
 }
 
-.btn_follow,
+.btn_follow {
+  display: block;
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 70%;
+  margin-left: auto;
+}
+
 .btn_search {
   display: block;
   background-color: #1e90ff;

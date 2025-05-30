@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .container {
   width: 100%;
   padding: 20px;
@@ -18,7 +20,7 @@
   align-items: center;
   justify-content: space-between; /* ← これで両端に分かれる！ */
   width: 100%;
-  padding: 0 20px; /* 左右に余白を追加したい場合 */
+  padding: 0 20px;
 }
 
 
@@ -81,6 +83,11 @@ figure img {
   word-break: break-word;
 }
 
+.update_button_container {
+  display: flex;
+  justify-content: center;
+}
+
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -123,6 +130,6 @@ figure img {
 }
 
 .btn.btn-danger {
-  padding: 6px 12px; /* 小さめのパディングに調整 */
-  width: auto;        /* 幅を必要最小限に */
+  padding: 4px 40px;
+  width: auto;
 }
