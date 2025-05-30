@@ -57,7 +57,9 @@
         </div>
 
         <!-- 更新ボタン -->
-        <button type="submit" class="btn btn-danger">更新</button>
+        <div class="update_button_container">
+          <button type="submit" class="btn btn-danger">更新</button>
+        </div>
       </form>
 
     @else
