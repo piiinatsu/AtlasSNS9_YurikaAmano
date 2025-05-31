@@ -75,9 +75,9 @@
       {{-- ★ サイドバー --}}
       <div class="sidebar">
         <div class="follow_info">
-          <p>フォロー数 <span class="follow_count">{{ $followCount ?? 0 }}人</span></p>
+          <p>フォロー数 <span id="sidebar-follow-count">{{ $followCount ?? 0 }}人</span></p>
           <a href="{{ route('follows.followlist') }}" class="btn_follow">フォローリスト</a>
-          <p>フォロワー数 <span class="follower_count">{{ $followerCount ?? 0 }}人</span></p>
+          <p>フォロワー数 <span id="sidebar-follower-count">{{ $followerCount ?? 0 }}人</span></p>
           <a href="{{ route('follows.followerlist') }}" class="btn_follow">フォロワーリスト</a>
         </div>
         <hr class="sidebar-divider">

@@ -110,27 +110,54 @@ class UsersController extends Controller
     }
 
     // フォロー処理
-    public function follow($id){
+    public function follow($id)
+    {
         $user = Auth::user();
         if (!$user) {
             return redirect('/login');
         }
-        // すでにフォローしていないか確認
+
+        // すでにフォローしていないときのみ追加
         if (!$user->follows()->where('followed_id', $id)->exists()) {
-            $user->follows()->attach($id); // フォローを追加
+            $user->follows()->attach($id);
         }
+
+        // Ajaxリクエストなら、部分HTMLを返す
+        if (request()->ajax()) {
+            $targetUser = User::findOrFail($id);
+            return response()->json([
+                'html' => view('components.follow_button', compact('targetUser'))->render(),
+                'followCount' => Auth::user()->follows()->count(),
+                'followerCount' => $user->followers()->count(),
+            ]);
+        }
+
+        // 通常リクエストはリダイレクト
         return redirect()->route('users.search');
     }
 
-
     // フォロー解除処理
-    public function unfollow($id){
+    public function unfollow($id)
+    {
         $user = Auth::user();
         if (!$user) {
             return redirect('/login');
         }
-        // フォローしている場合のみ解除
-        $user->follows()->detach($id); // フォローを削除
+
+        // フォロー中のときのみ削除
+        if ($user->follows()->where('followed_id', $id)->exists()) {
+            $user->follows()->detach($id);
+        }
+
+        if (request()->ajax()) {
+            $targetUser = User::findOrFail($id);
+            return response()->json([
+                'html' => view('components.follow_button', compact('targetUser'))->render(),
+                'followCount' => Auth::user()->follows()->count(),
+                'followerCount' => $user->followers()->count(),
+            ]);
+        }
+
         return redirect()->route('users.search');
     }
 

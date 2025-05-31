@@ -17,19 +17,8 @@
         <p><strong>name</strong> {{ $user->username }}</p>
         <p><strong>bio</strong> {{ $user->bio }}</p>
       </div>
-
-      <div class="follow_action">
-        @if(Auth::user()->follows()->where('followed_id', $user->id)->exists())
-          <form method="POST" action="{{ route('users.unfollow', $user->id) }}">
-            @csrf
-            <button type="submit" class="btn btn-danger">フォロー解除</button>
-          </form>
-        @else
-          <form method="POST" action="{{ route('users.follow', $user->id) }}">
-            @csrf
-            <button type="submit" class="btn btn-primary">フォローする</button>
-          </form>
-        @endif
+      <div class="follow_action" id="followArea">
+        @include('components.follow_button', ['targetUser' => $user])
       </div>
     </div>
   </div>
@@ -64,4 +53,5 @@
     </ul>
   </div>
 </div>
+<script src="{{ asset('js/follow.js') }}"></script>
 </x-login-layout>
