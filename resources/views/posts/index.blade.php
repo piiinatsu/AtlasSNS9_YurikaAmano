@@ -16,10 +16,15 @@
       <!-- フォーム送信でデータベースに投稿を保存 -->
       <form method="POST" action="{{ route('posts.store') }}" class="post_form_inner">
         @csrf
-        <input type="text" name="post" placeholder="投稿内容を入力してください。" class="post_input" required>
-          <button type="submit" class="post_submit">
-            <img src="{{ asset('images/post.png') }}" alt="送信">
-          </button>
+        <textarea name="post" placeholder="投稿内容を入力してください。" class="post_input" rows="3" required>{{ old('post') }}</textarea>
+        @if ($errors->has('post'))
+          <div class="error" style="color: red; margin-top: 4px;">
+              {{ $errors->first('post') }}
+          </div>
+        @endif
+        <button type="submit" class="post_submit">
+          <img src="{{ asset('images/post.png') }}" alt="送信">
+        </button>
       </form>
     </div>
 
@@ -48,7 +53,8 @@
                 <div class="post_name">{{ $post->user->username }}</div>
                 <div class="post_date">{{ $post->created_at->format('Y-m-d H:i') }}</div>
               </div>
-              <div class="post_text">{{ $post->post }}</div>
+              <div class="post_text">{!! nl2br(e($post->post)) !!}</div>
+              <!-- 改行を <br> に変えて、HTMLとして出力 -->
             </div>
             <!-- 投稿の編集・削除ボタン（ログインユーザーのみ、自分のだけ編集可能） -->
             @if(Auth::id() === $post->user_id)

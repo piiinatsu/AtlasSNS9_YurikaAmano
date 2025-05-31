@@ -57,7 +57,7 @@
               <div class="post_name">{{ $user->username }}</div>
               <div class="post_date">{{ $post->created_at->format('Y-m-d H:i') }}</div>
             </div>
-            <div class="post_text">{{ $post->post }}</div>
+            <div class="post_text">{!! nl2br(e($post->post)) !!}</div>
           </div>
         </li>
       @endforeach
