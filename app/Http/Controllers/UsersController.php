@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Follow;
+
 
 class UsersController extends Controller
 {
@@ -31,13 +33,32 @@ class UsersController extends Controller
             return redirect('/login');
         }
 
-        $request->validate([
+        // 基本ルール
+        $rules = [
             'username'   => 'required|min:2|max:12',
-            'mail'       => 'required|email|min:5|max:40|unique:users,email,'.$user->id,
-            'newPassword' => 'nullable|sometimes|alpha_num|min:8|max:20|confirmed',
+            'mail'       => 'required|email|min:5|max:40|unique:users,email,' . $user->id,
             'bio'        => 'nullable|max:150',
-            'iconImage'  => 'nullable|image|mimes:jpg,png,bmp,gif,svg'
-        ]);
+            'iconImage'  => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
+        ];
+
+        // パスワードを変更したい場合
+        if ($request->filled('newPassword')) {
+            // パスワードを変更したいとき → 通常のバリデーション
+            $rules['newPassword'] = 'required|alpha_num|min:8|max:20|confirmed';
+        } else {
+            // パスワード変更しないとき → 確認欄を「現在のパスワード」としてチェック
+            $rules['newPassword_confirmation'] = [
+                'required',
+                function ($attribute, $value, $fail) use ($user) {
+                    if (!Hash::check($value, $user->password)) {
+                        $fail('現在のパスワードが正しくありません。');
+                    }
+                },
+            ];
+        }
+
+        // バリデーション実行
+        $request->validate($rules);
 
         // 更新
         $user->username = $request->username;

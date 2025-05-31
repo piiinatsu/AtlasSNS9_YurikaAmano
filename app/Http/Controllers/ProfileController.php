@@ -33,7 +33,7 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|min:2|max:12',
             'mail' => 'required|email|max:40',
-            'newPassword' => 'nullable|string|min:8|max:20|confirmed|regex:/^[a-zA-Z0-9]+$/',
+            'newPassword' => 'required|string|min:8|max:20|confirmed|regex:/^[a-zA-Z0-9]+$/',
             'bio' => 'nullable|string|max:150',
             'iconImage' => 'nullable|image|max:2048',
         ]);

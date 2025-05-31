@@ -19,7 +19,7 @@
       <form action="{{ route('users.updateProfile') }}" method="POST" enctype="multipart/form-data" class="profile_form">
         @csrf
         @method('POST')
-        @if ($errors->any())
+        <!-- @if ($errors->any())
           <div class="error_messages">
             <ul>
               @foreach ($errors->all() as $error)
@@ -27,42 +27,60 @@
               @endforeach
             </ul>
           </div>
-        @endif
+        @endif -->
 
         <!-- ユーザー名 -->
         <div class="form_group">
           <label for="username">user name</label>
-          <input type="text" name="username" id="username" value="{{ $user->username }}" required>
+          <input type="text" name="username" id="username" value="{{ old('username', $user->username) }}" required>
+          @error('username')
+            <div class="error">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- メールアドレス -->
         <div class="form_group">
           <label for="mail">mail address</label>
-          <input type="email" name="mail" id="mail" value="{{ $user->email }}" required>
+          <input type="email" name="mail" id="mail" value="{{ old('mail', $user->email) }}" required>
+          @error('mail')
+            <div class="error">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- パスワード -->
         <div class="form_group">
           <label for="newPassword">password</label>
-          <input type="password" name="newPassword" id="newPassword" placeholder="変更する場合のみ入力">
+          <input type="password" name="newPassword" id="newPassword">
+          @error('newPassword')
+            <div class="error">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- パスワード確認 -->
         <div class="form_group">
           <label for="newPassword_confirmation">password confirm</label>
           <input type="password" name="newPassword_confirmation" id="newPassword_confirmation" placeholder="新しいパスワードを確認のため入力">
+          @error('newPassword_confirmation')
+            <div class="error">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- 自己紹介 -->
         <div class="form_group">
           <label for="bio">bio</label>
-          <textarea name="bio" id="bio" rows="3">{{ $user->bio }}</textarea>
+          <textarea name="bio" id="bio" rows="3">{{ old('bio', $user->bio) }}</textarea>
+          @error('bio')
+            <div class="error">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- アイコン画像 -->
         <div class="form_group">
           <label for="iconImage">icon image</label>
           <input type="file" name="iconImage" id="iconImage">
+          @error('iconImage')
+            <div class="error">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- 更新ボタン -->

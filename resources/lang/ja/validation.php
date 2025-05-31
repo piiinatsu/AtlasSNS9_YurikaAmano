@@ -24,6 +24,7 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード（確認用）',
+        'newPassword' => 'パスワード',
         'new_password' => '新しいパスワード',
         'new_password_confirmation' => '新しいパスワード（確認用）',
         'post' => 'つぶやき',
