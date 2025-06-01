@@ -16,13 +16,13 @@
 
     <!-- メールアドレス入力 -->
     <div class="form_group">
-      {{ Form::label('email', 'mail address', ['class' => 'form_label']) }}
+      {{ Form::label('email', 'メールアドレス', ['class' => 'form_label']) }}
       {{ Form::text('email', null, ['class' => 'input']) }}
     </div>
 
     <!-- パスワード入力 -->
     <div class="form_group">
-      {{ Form::label('password', 'password', ['class' => 'form_label']) }}
+      {{ Form::label('password', 'パスワード', ['class' => 'form_label']) }}
       {{ Form::password('password', ['class' => 'input']) }}
     </div>
 
@@ -36,7 +36,7 @@
 
     <!-- ログインボタン -->
     <div class="form_group login_button_container">
-      {{ Form::submit('LOGIN', ['class' => 'btn_submit']) }}
+      {{ Form::submit('ログイン', ['class' => 'btn_submit']) }}
     </div>
 
     <p class="register_link">

@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="follow_header">
-    <h2 class="follow_title">Follow List</h2>
+    <h2 class="follow_title">フォローリスト</h2>
     <!-- アイコン一覧 -->
         <div class="icon_list">
           @if ($followedUsers->isNotEmpty())

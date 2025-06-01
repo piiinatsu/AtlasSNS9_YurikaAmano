@@ -14,8 +14,14 @@
       <img src="{{ asset($iconPath) }}" alt="{{ $user->username }}" class="user_icon">
 
       <div class="user_info">
-        <p><strong>name</strong> {{ $user->username }}</p>
-        <p><strong>bio</strong> {{ $user->bio }}</p>
+        <div class="info_row">
+          <span class="info_label">ユーザー名</span>
+          <span class="info_value">{{ $user->username }}</span>
+        </div>
+        <div class="info_row">
+          <span class="info_label">自己紹介</span>
+          <span class="info_value">{{ $user->bio }}</span>
+        </div>
       </div>
       <div class="follow_action" id="followArea">
         @include('components.follow_button', ['targetUser' => $user])

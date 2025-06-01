@@ -5,7 +5,7 @@
 <div class="container">
   <!-- アイコン一覧 -->
   <div class="follow_header">
-    <h2 class="follow_title">Follower List</h2>
+    <h2 class="follow_title">フォロワーリスト</h2>
     <div class="icon_list">
       @if ($followerUsers->isNotEmpty())
       @foreach ($followerUsers as $follower)

@@ -22,7 +22,7 @@
 
         <!-- ユーザー名 -->
         <div class="form_group">
-          <label for="username">user name</label>
+          <label for="username">ユーザー名</label>
           <div class="center-wrapper">
             <input type="text" name="username" id="username" value="{{ old('username', $user->username) }}" required>
         </div>
@@ -33,7 +33,7 @@
 
         <!-- メールアドレス -->
         <div class="form_group">
-          <label for="mail">mail address</label>
+          <label for="mail">メールアドレス</label>
           <div class="center-wrapper">
             <input type="email" name="mail" id="mail" value="{{ old('mail', $user->email) }}" required>
           </div>
@@ -44,7 +44,7 @@
 
         <!-- パスワード -->
         <div class="form_group">
-          <label for="newPassword">password</label>
+          <label for="newPassword">パスワード</label>
           <div class="center-wrapper">
             <input type="password" name="newPassword" id="newPassword">
           </div>
@@ -55,7 +55,7 @@
 
         <!-- パスワード確認 -->
         <div class="form_group">
-          <label for="newPassword_confirmation">password confirm</label>
+          <label for="newPassword_confirmation">パスワード確認</label>
           <div class="center-wrapper">
             <input type="password" name="newPassword_confirmation" id="newPassword_confirmation" placeholder="新しいパスワードを確認のため入力">
           </div>
@@ -66,7 +66,7 @@
 
         <!-- 自己紹介 -->
         <div class="form_group">
-          <label for="bio">bio</label>
+          <label for="bio">自己紹介</label>
           <div class="center-wrapper">
             <textarea name="bio" id="bio" rows="3">{{ old('bio', $user->bio) }}</textarea>
           </div>
@@ -77,7 +77,7 @@
 
         <!-- アイコン画像 -->
         <div class="form_group">
-          <label for="iconImage">icon image</label>
+          <label for="iconImage">アイコン画像</label>
           <div class="center-wrapper">
             <input type="file" name="iconImage" id="iconImage" class="center-input">
           </div>
