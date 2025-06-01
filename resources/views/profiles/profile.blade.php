@@ -19,20 +19,13 @@
       <form action="{{ route('users.updateProfile') }}" method="POST" enctype="multipart/form-data" class="profile_form">
         @csrf
         @method('POST')
-        <!-- @if ($errors->any())
-          <div class="error_messages">
-            <ul>
-              @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif -->
 
         <!-- ユーザー名 -->
         <div class="form_group">
           <label for="username">user name</label>
-          <input type="text" name="username" id="username" value="{{ old('username', $user->username) }}" required>
+          <div class="center-wrapper">
+            <input type="text" name="username" id="username" value="{{ old('username', $user->username) }}" required>
+        </div>
           @error('username')
             <div class="error">{{ $message }}</div>
           @enderror
@@ -41,7 +34,9 @@
         <!-- メールアドレス -->
         <div class="form_group">
           <label for="mail">mail address</label>
-          <input type="email" name="mail" id="mail" value="{{ old('mail', $user->email) }}" required>
+          <div class="center-wrapper">
+            <input type="email" name="mail" id="mail" value="{{ old('mail', $user->email) }}" required>
+          </div>
           @error('mail')
             <div class="error">{{ $message }}</div>
           @enderror
@@ -50,7 +45,9 @@
         <!-- パスワード -->
         <div class="form_group">
           <label for="newPassword">password</label>
-          <input type="password" name="newPassword" id="newPassword">
+          <div class="center-wrapper">
+            <input type="password" name="newPassword" id="newPassword">
+          </div>
           @error('newPassword')
             <div class="error">{{ $message }}</div>
           @enderror
@@ -59,8 +56,10 @@
         <!-- パスワード確認 -->
         <div class="form_group">
           <label for="newPassword_confirmation">password confirm</label>
-          <input type="password" name="newPassword_confirmation" id="newPassword_confirmation" placeholder="新しいパスワードを確認のため入力">
-          @error('newPassword_confirmation')
+          <div class="center-wrapper">
+            <input type="password" name="newPassword_confirmation" id="newPassword_confirmation" placeholder="新しいパスワードを確認のため入力">
+          </div>
+            @error('newPassword_confirmation')
             <div class="error">{{ $message }}</div>
           @enderror
         </div>
@@ -68,7 +67,9 @@
         <!-- 自己紹介 -->
         <div class="form_group">
           <label for="bio">bio</label>
-          <textarea name="bio" id="bio" rows="3">{{ old('bio', $user->bio) }}</textarea>
+          <div class="center-wrapper">
+            <textarea name="bio" id="bio" rows="3">{{ old('bio', $user->bio) }}</textarea>
+          </div>
           @error('bio')
             <div class="error">{{ $message }}</div>
           @enderror
@@ -77,15 +78,19 @@
         <!-- アイコン画像 -->
         <div class="form_group">
           <label for="iconImage">icon image</label>
-          <input type="file" name="iconImage" id="iconImage">
+          <div class="center-wrapper">
+            <input type="file" name="iconImage" id="iconImage" class="center-input">
+          </div>
           @error('iconImage')
             <div class="error">{{ $message }}</div>
           @enderror
         </div>
 
         <!-- 更新ボタン -->
-        <div class="update_button_container">
-          <button type="submit" class="btn btn-danger">更新</button>
+        <div class="form_group_centered">
+          <div class="center-wrapper full-width">
+            <button type="submit" class="btn btn-danger">更新</button>
+          </div>
         </div>
       </form>
 
