@@ -83,7 +83,37 @@ figure img {
   word-break: break-word;
 }
 
-.update_button_container {
+.center-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* 横幅を他のinputと揃える（例：500px） */
+.center-input {
+  width: 100px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 「選択されていません」を非表示（Chrome, Edge） */
+input[type="file"]::file-selector-text {
+  display: none;
+}
+
+/* Safari対応：ボタンだけ中央寄せ */
+input[type="file"]::-webkit-file-upload-button {
+  display: block;
+  margin: 0 auto;
+}
+
+.form_group_centered {
+  margin-top: 20px;
+}
+
+.center-wrapper.full-width {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -108,6 +138,9 @@ figure img {
 }
 
 .btn-danger {
+  display: inline-block;
+  min-width: 100px;
+  text-align: center;
   background-color: #dc3545;
   color: white;
   border: none;
@@ -130,6 +163,11 @@ figure img {
 }
 
 .btn.btn-danger {
-  padding: 4px 40px;
-  width: auto;
+  min-width: 150px;
+  padding: 8px 20px;
+  text-align: center;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
