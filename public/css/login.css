@@ -95,6 +95,8 @@
 /* リンクのスタイル */
 .register_link {
   text-align: center;
+  text-decoration:underline;
+  text-decoration-color:white;
 }
 
 .register_link a {

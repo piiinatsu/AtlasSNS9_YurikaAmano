@@ -75,6 +75,7 @@
       {{-- ★ サイドバー --}}
       <div class="sidebar">
         <div class="follow_info">
+          <p>{{ Auth::user()->username }}さんの</p>
           <p>フォロー数 <span id="sidebar-follow-count">{{ $followCount ?? 0 }}人</span></p>
           <a href="{{ route('follows.followlist') }}" class="btn_follow">フォローリスト</a>
           <p>フォロワー数 <span id="sidebar-follower-count">{{ $followerCount ?? 0 }}人</span></p>
