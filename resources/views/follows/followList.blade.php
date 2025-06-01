@@ -11,11 +11,10 @@
             @foreach ($followedUsers as $follower)
             @php
             $iconPath = $follower->icon_image
-              ? (\Illuminate\Support\Str::startsWith($follower->icon_image, 'images/')
-                  ? 'storage/' . $follower->icon_image
-                  : 'storage/images/' . $follower->icon_image)
+              ? 'images/' . $follower->icon_image
               : 'images/default-icon.png';
             @endphp
+
             <a href="{{ route('users.show', ['id' => $follower->id]) }}">
               <img src="{{ asset($iconPath) }}" alt="{{ $follower->username }}" class="user_icon">
             </a>
@@ -31,13 +30,12 @@
     <ul>
       @if ($followingsPosts->isNotEmpty())
         @foreach ($followingsPosts as $post)
-        @php
-            $iconPath = $post->user->icon_image
-              ? (\Illuminate\Support\Str::startsWith($post->user->icon_image, 'images/')
-                  ? 'storage/' . $post->user->icon_image
-                  : 'storage/images/' . $post->user->icon_image)
-              : 'images/default-icon.png';
+          @php
+          $iconPath = $post->user->icon_image
+            ? 'images/' . $post->user->icon_image
+            : 'images/default-icon.png';
           @endphp
+
           <li class="post_block">
             <figure>
               <a href="{{ route('users.show', ['id' => $post->user->id]) }}">

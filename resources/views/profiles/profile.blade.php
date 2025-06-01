@@ -4,11 +4,10 @@
   <div class="profile_container">
     @php
       $iconPath = $user->icon_image
-        ? (\Illuminate\Support\Str::startsWith($user->icon_image, 'images/')
-            ? 'storage/' . $user->icon_image
-            : 'storage/images/' . $user->icon_image)
+        ? 'images/' . $user->icon_image
         : 'images/default-icon.png';
     @endphp
+
 
     @if (Auth::id() === $user->id)
     <!-- 自分のプロフィール画像も表示 -->

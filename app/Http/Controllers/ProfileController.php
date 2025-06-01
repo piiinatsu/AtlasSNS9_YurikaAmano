@@ -51,7 +51,7 @@ class ProfileController extends Controller
         // アイコン画像がアップロードされていれば保存
         if ($request->hasFile('iconImage')) {
             $filename = uniqid() . '.' . $request->file('iconImage')->getClientOriginalExtension();
-            $request->file('iconImage')->storeAs('public/images', $filename);
+            $request->file('iconImage')->move(public_path('images'), $filename);
             $user->icon_image = $filename;
         }
 

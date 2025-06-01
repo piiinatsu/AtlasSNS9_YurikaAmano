@@ -42,11 +42,10 @@
           @php
             $authUser = \App\Models\User::find(Auth::id());
             $iconPath = $authUser && $authUser->icon_image
-              ? (Str::startsWith($authUser->icon_image, 'images/')
-                  ? 'storage/' . $authUser->icon_image
-                  : 'storage/images/' . $authUser->icon_image)
+              ? 'images/' . $authUser->icon_image
               : 'images/default-icon.png';
           @endphp
+
           <button class="dropdown_button"><span class="dropdown_arrow"></span></button>
           <img src="{{ asset($iconPath) }}" alt="User Icon" class="user_icon">
         </div>

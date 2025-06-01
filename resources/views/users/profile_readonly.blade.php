@@ -5,11 +5,9 @@
   <div class="follow_header">
     <div class="icon_list">
       @php
-          $iconPath = $user->icon_image
-              ? (Str::startsWith($user->icon_image, 'images/')
-                  ? 'storage/' . $user->icon_image
-                  : 'storage/images/' . $user->icon_image)
-              : 'images/default-icon.png';
+        $iconPath = $user->icon_image
+          ? 'images/' . $user->icon_image
+          : 'images/default-icon.png';
       @endphp
       <img src="{{ asset($iconPath) }}" alt="{{ $user->username }}" class="user_icon">
 
@@ -35,11 +33,9 @@
     <ul>
       @foreach ($posts as $post)
         @php
-            $iconPath = $user->icon_image
-                ? (Str::startsWith($user->icon_image, 'images/')
-                    ? 'storage/' . $user->icon_image
-                    : 'storage/images/' . $user->icon_image)
-                : 'images/default-icon.png';
+          $iconPath = $user->icon_image
+            ? 'images/' . $user->icon_image
+            : 'images/default-icon.png';
         @endphp
         <li class="post_block">
           <figure>

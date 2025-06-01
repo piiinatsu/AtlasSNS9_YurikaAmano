@@ -25,9 +25,7 @@
         <div class="user_item">
           @php
             $iconPath = $user->icon_image
-              ? (\Illuminate\Support\Str::startsWith($user->icon_image, 'images/')
-                ? 'storage/' . $user->icon_image
-                : 'storage/images/' . $user->icon_image)
+              ? 'images/' . $user->icon_image
               : 'images/default-icon.png';
           @endphp
 

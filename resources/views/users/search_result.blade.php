@@ -24,11 +24,9 @@
       @foreach ($users as $user)
         <div class="user_item">
           @php
-              $iconPath = $user->icon_image
-                  ? (\Illuminate\Support\Str::startsWith($user->icon_image, 'images/')
-                      ? 'storage/' . $user->icon_image
-                      : 'storage/images/' . $user->icon_image)
-                  : 'images/default-icon.png';
+            $iconPath = $user->icon_image
+              ? 'images/' . $user->icon_image
+              : 'images/default-icon.png';
           @endphp
           <img src="{{ asset($iconPath) }}" alt="{{ $user->username }}" class="user_icon">
           <span class="user_name">{{ $user->username }}</span>

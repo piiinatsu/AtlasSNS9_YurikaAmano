@@ -7,12 +7,11 @@
       @php
         $authUser = \App\Models\User::find(Auth::id());
         $authIcon = $authUser && $authUser->icon_image
-          ? (\Illuminate\Support\Str::startsWith($authUser->icon_image, 'images/')
-              ? 'storage/' . $authUser->icon_image
-              : 'storage/images/' . $authUser->icon_image)
+          ? 'images/' . $authUser->icon_image
           : 'images/default-icon.png';
       @endphp
       <img src="{{ asset($authIcon) }}" alt="User Icon" class="user_icon">
+
       <!-- フォーム送信でデータベースに投稿を保存 -->
       <form method="POST" action="{{ route('posts.store') }}" class="post_form_inner">
         @csrf
@@ -37,9 +36,7 @@
         @foreach($posts as $post)
           @php
             $iconPath = $post->user->icon_image
-              ? (\Illuminate\Support\Str::startsWith($post->user->icon_image, 'images/')
-                  ? 'storage/' . $post->user->icon_image
-                  : 'storage/images/' . $post->user->icon_image)
+              ? 'images/' . $post->user->icon_image
               : 'images/default-icon.png';
           @endphp
           <li class="post_block">
